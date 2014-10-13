@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>step1</title>
+</head>
+
+<body>
+    <h1>Step1</h1>
+    <canvas id="scratchoff"></canvas>
+    <script src="//code.createjs.com/easeljs-0.7.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var oStage = new createjs.Stage(jQuery("#scratchoff")[0]);
+            var oCircle = new createjs.Shape();
+            oCircle.graphics.beginFill("red").drawCircle(0, 0, 50);
+            oCircle.x = 100;
+            oCircle.y = 100;
+            oStage.addChild(oCircle);
+            var oData = {
+                images: ["scratchoffsheet.png"],
+                frames: {
+                    width: 200,
+                    height: 200
+                },
+                animations: {
+                    stop: 0,
+                    scratch: [0, 23]
+                }
+            };
+            var oSpriteSheet = new createjs.SpriteSheet(oData);
+            var oAnimation = new createjs.Sprite(oSpriteSheet, "stop");
+            oStage.addChild(oAnimation);
+            createjs.Ticker.addEventListener("tick", oStage);
+            oAnimation.addEventListener("click", function (event) {
+                oAnimation.gotoAndPlay("scratch");
+            });
+            oAnimation.on("animationend", function () {
+                oAnimation.stop();
+            });
+        });
+    </script>
+</body>
+
+</html>
