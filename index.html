@@ -2,23 +2,25 @@
 <html>
 
 <head>
-    <title>step1</title>
+    <title>Scratch and Discount</title>
 </head>
 
 <body>
-    <h1>Step2</h1>
+    <h1>Scratch and Discount</h1>
     <canvas id="scratchoff" width="1024"></canvas>
     <script src="//code.createjs.com/easeljs-0.7.1.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script>
-        //animation start
+
+        //animation start function
         function start(event) {
             event.currentTarget.gotoAndPlay("scratch");
         }
-         //animation end
+         //animation end function
         function end() {
             this.stop();
+            if(this.currentAnimation == "scratch") createjs.Ticker.removeAllEventListeners();
         }
 
          //generate a normal distribution around a mean courtesy Andy Novocin
