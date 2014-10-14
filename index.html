@@ -12,15 +12,18 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script>
-
+        // flag to keep scratching from happening twice
+        var bScratching = false;
         //animation start function
         function start(event) {
-            event.currentTarget.gotoAndPlay("scratch");
+            if(!bScratching){
+                event.currentTarget.gotoAndPlay("scratch");
+                bScratching = true;
+            }
         }
          //animation end function
         function end() {
             this.stop();
-            if(this.currentAnimation == "scratch") createjs.Ticker.removeAllEventListeners();
         }
 
          //generate a normal distribution around a mean courtesy Andy Novocin (half of Box-Muller method)
