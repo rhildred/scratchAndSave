@@ -23,15 +23,15 @@
             if(this.currentAnimation == "scratch") createjs.Ticker.removeAllEventListeners();
         }
 
-         //generate a normal distribution around a mean courtesy Andy Novocin
-        function generateStandardBivariateNormal() {
+         //generate a normal distribution around a mean courtesy Andy Novocin (half of Box-Muller method)
+        function generateStandardNormal() {
             var x1 = Math.random();
             var z1 = Math.sqrt(-2 * Math.log(x1)) * Math.cos(2 * Math.PI * x1);
             return z1;
         }
 
-        function generateBivariateNormal(mean, variance) {
-            var zs = generateStandardBivariateNormal();
+        function generateNormal(mean, variance) {
+            var zs = generateStandardNormal();
             zs = zs * Math.sqrt(variance) + mean;
             return zs;
         }
@@ -55,9 +55,9 @@
 
             //create %s
 
-            var nDoor1 = Math.abs(Math.round(generateBivariateNormal(5, 30)));
-            var nDoor2 = Math.abs(Math.round(generateBivariateNormal(5, 30)));
-            var nDoor3 = Math.abs(Math.round(generateBivariateNormal(5, 30)));
+            var nDoor1 = Math.abs(Math.round(generateNormal(5, 30)));
+            var nDoor2 = Math.abs(Math.round(generateNormal(5, 30)));
+            var nDoor3 = Math.abs(Math.round(generateNormal(5, 30)));
 
             var oDoor1 = new createjs.Text(nDoor1 + " % off!", "30px Arial", "#ff7700");
             var oDoor2 = new createjs.Text(nDoor2 + " % off!", "30px Arial", "#ff7700");
